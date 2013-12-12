@@ -885,7 +885,9 @@ the specific language governing permissions and limitations under the Apache Lic
 
                             formatted=opts.formatResult(result, label, query, self.opts.escapeMarkup);
                             if (formatted!==undefined) {
-                                label.html(formatted);
+                                var markup=[];
+								markMatch(formatted, query.term, markup, self.opts.escapeMarkup);
+								label.html(markup.join(""));
                             }
 
                             node.append(label);
