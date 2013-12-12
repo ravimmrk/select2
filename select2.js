@@ -885,9 +885,13 @@ the specific language governing permissions and limitations under the Apache Lic
 
                             formatted=opts.formatResult(result, label, query, self.opts.escapeMarkup);
                             if (formatted!==undefined) {
-                                var markup=[];
-								markMatch(formatted, query.term, markup, self.opts.escapeMarkup);
-								label.html(markup.join(""));
+                                 if (opts.appyCustomSelectedTextStyle){
+					var markup=[];
+					markMatch(formatted, query.term, markup, self.opts.escapeMarkup);
+				 	label.html(markup.join(""));
+				 }else{
+					label.html(formatted);
+				 }
                             }
 
                             node.append(label);
@@ -3247,7 +3251,8 @@ the specific language governing permissions and limitations under the Apache Lic
         selectOnBlur: false,
         adaptContainerCssClass: function(c) { return c; },
         adaptDropdownCssClass: function(c) { return null; },
-        nextSearchTerm: function(selectedObject, currentSearchTerm) { return undefined; }
+        nextSearchTerm: function(selectedObject, currentSearchTerm) { return undefined; },
+        appyCustomSelectedTextStyle:false
     };
 
     $.fn.select2.ajaxDefaults = {
